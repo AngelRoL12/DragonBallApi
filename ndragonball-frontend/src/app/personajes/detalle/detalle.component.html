@@ -1,0 +1,29 @@
+<div class="container mt-4">
+    <div class="d-flex justify-content-center">
+        <h2>{{ personaje.name }}</h2>
+    </div>
+    <div class="row mt-2">
+      <!-- Columna para la imagen -->
+      <div class="col-md-6 d-flex justify-content-center">
+        <img
+          [src]="personaje.image"
+          [alt]="personaje.name"
+          class="img-fluid rounded"
+          style="height: 90vh; object-fit: cover;"
+        />
+      </div>
+  
+      <!-- Columna para la descripción -->
+      <div class="col-md-6">
+        <p><strong>Id:</strong> {{ personaje.id }}</p>
+        <p><strong>KI:</strong> {{ personaje.ki }}</p>
+        <p><strong>KI máximo:</strong> {{ personaje.maxKi }}</p>
+        <p><strong>Raza:</strong> {{ personaje.race }}</p>
+        <p><strong>Género:</strong> {{ personaje.gender }}</p>
+        <p><strong>Afiliación:</strong> {{ personaje.affiliation }}</p>
+        <p><strong>Descripción:</strong></p>
+        <p>{{ personaje.description }}</p>
+      </div>
+    </div>
+  </div>
+  

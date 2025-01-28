@@ -1,0 +1,48 @@
+<p-table [value]="personajes" [tableStyle]="{ 'min-width': '60rem' }" [paginator]="true" [rows]="5" [rowsPerPageOptions]="[5, 10, 20]">
+    <!-- <ng-template #caption>
+        <div class="flex items-center justify-between">
+            <span class="text-xl font-bold">Personajes de Dragon Ball</span>
+          
+        </div>
+    </ng-template> -->
+    <ng-template pTemplate="header" #header>
+        <tr>
+            <th>Favorito</th>
+            <th>Id</th>
+            <th>Nombre</th>
+            <th>KI</th>
+            <th>KI máximo</th>
+            <th>Raza</th>
+            <th>Genero</th>
+            <th>Descripción</th>
+            <th>Imagen</th>
+            <th>Afiliación</th>
+        </tr>
+    </ng-template>
+    <ng-template pTemplate="body" #body let-personaje>
+        <tr>
+            <td><p-checkbox  [binary]="true" [(ngModel)]="personaje.favorito" (onChange)="Favorito(personaje)"/></td>
+            <td (click)="FilaSeleccionada(personaje)">{{ personaje.id }}</td>
+            <td (click)="FilaSeleccionada(personaje)">{{ personaje.name }}</td>
+            <td (click)="FilaSeleccionada(personaje)">{{ personaje.ki }}</td>
+            <td (click)="FilaSeleccionada(personaje)">{{ personaje.maxKi }}</td>
+            <td (click)="FilaSeleccionada(personaje)">{{ personaje.race }}</td>
+            <td (click)="FilaSeleccionada(personaje)">{{ personaje.gender }}</td>
+            <td (click)="FilaSeleccionada(personaje)">{{ personaje.description | slice:0:100 }}...</td>
+            <td (click)="FilaSeleccionada(personaje)">
+                <img
+                    [src]="personaje.image"
+                    [alt]="personaje.name"
+                    class="object-cover rounded"
+                    style="width: auto; height: 10rem;"
+                />
+            </td>
+            <td (click)="FilaSeleccionada(personaje)">{{ personaje.affiliation }}</td>
+            <!-- <td><p-rating [(ngModel)]="product.rating" [readonly]="true" [cancel]="false" /></td> -->
+            <!-- <td>
+                <p-tag [value]="product.inventoryStatus" [severity]="getSeverity(product.inventoryStatus)" />
+            </td> -->
+        </tr>
+    </ng-template>
+    <!-- <ng-template #footer> In total there are {{ personajes ? personajes.length : 0 }} personajes. </ng-template> -->
+</p-table>

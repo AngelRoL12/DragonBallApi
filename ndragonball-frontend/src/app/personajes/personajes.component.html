@@ -1,10 +1,22 @@
-<p-table [value]="personajesTabla" [tableStyle]="{ 'min-width': '60rem' }" [paginator]="true" [rows]="5" [rowsPerPageOptions]="[5, 10, 20]">
+<p-table #dt2 dataKey="id" [value]="personajesTabla" [tableStyle]="{ 'min-width': '60rem' }" [paginator]="true" [rows]="5" [rowsPerPageOptions]="[5, 10, 20]" [globalFilterFields]="['name']">
     <!-- <ng-template #caption>
         <div class="flex items-center justify-between">
             <span class="text-xl font-bold">Personajes de Dragon Ball</span>
           
         </div>
     </ng-template> -->
+
+    <ng-template pTemplate="caption">
+        <div class="flex justify-end">
+            <p-iconField iconPosition="left" class="ml-auto">
+                <p-inputIcon>
+                    <i class="pi pi-search"></i>
+                </p-inputIcon>
+                <input pInputText type="text" (input)="filtrarTabla($event)" placeholder="Search name">
+            </p-iconField> 
+        </div>
+    </ng-template>
+
     <ng-template pTemplate="header" #header>
         <tr>
             <th>Favorito</th>

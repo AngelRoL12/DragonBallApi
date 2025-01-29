@@ -19,6 +19,7 @@ export class NavbarComponent {
     // Verificar si hay un token en localStorage
     const token = localStorage.getItem('token');
     if (token) {
+      console.log("Token: ", token);
       this.isLoggedIn = true;
       this.username = localStorage.getItem('name'); // Obtener el nombre del usuario
     }

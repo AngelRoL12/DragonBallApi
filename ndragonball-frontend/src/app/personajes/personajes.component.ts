@@ -1,7 +1,8 @@
-import { ChangeDetectorRef, Component } from '@angular/core';
+import { ChangeDetectorRef, Component, ViewChild } from '@angular/core';
 import { PersonajesService } from './personajes.service';
 import { Personaje } from '../interfaces/interfaces';
 import { Router } from '@angular/router';
+import { Table } from 'primeng/table';
 
 @Component({
   selector: 'app-personajes',
@@ -13,6 +14,7 @@ export class PersonajesComponent {
   personajes: Personaje[] = [];
   personajesTabla: Personaje[] = [];
   personajesFavoritos: Personaje[] = [];
+  @ViewChild('dt2') dt2!: Table; // Referencia a la tabla
 
   async ngOnInit() {
     // Llama al servicio en el hook de inicialización
@@ -72,5 +74,11 @@ export class PersonajesComponent {
     } catch (error) {
       console.error('Error al cargar personajes:', error);
     }
+  }
+
+  filtrarTabla(event: Event) {
+    console.log("Evento: ", event);
+    const inputElement = event.target as HTMLInputElement; // Hacemos el type assertion aquí
+    this.dt2.filterGlobal(inputElement.value, 'contains');
   }
 }

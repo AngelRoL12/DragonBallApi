@@ -10,6 +10,8 @@ import { CheckboxModule } from 'primeng/checkbox';
 import { DetalleComponent } from './detalle/detalle.component';
 import { FavoritosComponent } from './favoritos/favoritos.component';
 import { FormsModule } from '@angular/forms';
+import { IconFieldModule } from 'primeng/iconfield';
+import { InputIconModule } from 'primeng/inputicon';
 
 @NgModule({
   declarations: [
@@ -24,7 +26,9 @@ import { FormsModule } from '@angular/forms';
     TagModule,
     ButtonModule, 
     CheckboxModule,
-    FormsModule
+    FormsModule,
+    IconFieldModule,
+    InputIconModule
   ]
 })
 export class PersonajesModule { }

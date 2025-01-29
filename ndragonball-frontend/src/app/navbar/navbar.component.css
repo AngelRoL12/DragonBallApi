@@ -1,0 +1,19 @@
+.p-toolbar {
+    position: fixed;
+    width: 100%;
+    top: 0;
+    left: 0;
+    z-index: 1000;
+    background-color: #343a40; /* Cambiar color si lo deseas */
+    color: white;
+  }
+  
+  .p-toolbar-title {
+    font-weight: bold;
+    font-size: 18px;
+  }
+  
+  .p-button-danger {
+    margin-left: 15px;
+  }
+  

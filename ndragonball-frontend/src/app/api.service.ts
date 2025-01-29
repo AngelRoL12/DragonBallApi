@@ -22,7 +22,17 @@ export class ApiService {
   // Método para hacer un GET
   async getData(endpoint: string): Promise<any> {
     try {
-      const response = await this.axiosInstance.get(endpoint);
+
+      const token = localStorage.getItem('token');
+      if (!token) {
+        throw new Error('Token de autenticación no encontrado');
+      }
+
+      const response = await this.axiosInstance.get(endpoint, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      });
       return response.data; // Retorna solo los datos
     } catch (error: any) {
       console.error('Error en GET:', error.message);

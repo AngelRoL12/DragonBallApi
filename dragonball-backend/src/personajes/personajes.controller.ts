@@ -1,11 +1,13 @@
-import { Body, Controller, Delete, Get, Param, Post, Query } from '@nestjs/common';
+import { Body, Controller, Delete, Get, Param, Post, Query, UseGuards } from '@nestjs/common';
 import { PersonajesService } from './personajes.service';
 import { PersonajesFavoritosEntity } from './entity/personajes-favoritos.entity';
+import { JwtAuthGuard } from 'src/auth/guardas/jwt-auth.guard';
 
 @Controller('personajes')
 export class PersonajesController {
     constructor(private personajesService: PersonajesService){}
 
+    @UseGuards(JwtAuthGuard)
     @Get('/consulta')
     getCharacters(@Query() query: Record<string, any>) {
       return this.personajesService.getCharacters(query);

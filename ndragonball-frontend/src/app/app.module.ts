@@ -7,12 +7,16 @@ import { AppRoutingModule } from './app-routing.routes';
 import { PersonajesModule } from './personajes/personajes.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { TableModule } from 'primeng/table';
-
+import { AuthModule } from './auth/auth.module';
+import { NavbarComponent } from './navbar/navbar.component';
+import { ToolbarModule } from 'primeng/toolbar'; // Importa ToolbarModule
+import { ButtonModule } from 'primeng/button';   // Importa ButtonModule
 
 
 @NgModule({
   declarations: [
     AppComponent,
+    NavbarComponent
   ],
   imports: [
     CommonModule,
@@ -20,8 +24,11 @@ import { TableModule } from 'primeng/table';
     BrowserModule,
     ReactiveFormsModule,  
     AppRoutingModule,
+    AuthModule,
     PersonajesModule,
-    TableModule
+    TableModule,
+    ToolbarModule, 
+    ButtonModule
   ],
   providers: [], 
   bootstrap: [AppComponent]

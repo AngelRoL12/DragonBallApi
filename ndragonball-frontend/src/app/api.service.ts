@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+import { Params } from '@angular/router';
 import axios, { AxiosInstance } from 'axios';
 
 @Injectable({
@@ -20,7 +21,7 @@ export class ApiService {
   }
 
   // Método para hacer un GET
-  async getData(endpoint: string): Promise<any> {
+  async getData(endpoint: string, params: Params = {}): Promise<any> {
     try {
 
       const token = localStorage.getItem('token');
@@ -32,6 +33,7 @@ export class ApiService {
         headers: {
           Authorization: `Bearer ${token}`,
         },
+        params: params,
       });
       return response.data; // Retorna solo los datos
     } catch (error: any) {

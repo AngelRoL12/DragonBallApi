@@ -1,6 +1,6 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable, tap, of, map, catchError, interval, take } from 'rxjs';
+import { Observable, tap, of, map, catchError, interval, take, BehaviorSubject } from 'rxjs';
 import { User } from '../../interfaces/interfaces';
 
 
@@ -11,6 +11,13 @@ export class AuthService {
 	private baseUrl: string = 'http://localhost:3000/';
 	private _auth: any | undefined ;
 	private _user: string | undefined;
+
+	private isLoggedInSubject = new BehaviorSubject<boolean>(this.hasToken());
+  	isLoggedIn$ = this.isLoggedInSubject.asObservable();
+
+	private hasToken(): boolean {
+	return !!localStorage.getItem('token');
+	}
 
 	get auth(): any {
 		return { ...this._auth! }
@@ -30,16 +37,24 @@ export class AuthService {
 	}
 
 	login(user: User): Observable <any> {
-			this._user = user.name;
-			localStorage.setItem('iduser',user.name);
-			console.log(localStorage)
+			// this._user = user.name;
+			// localStorage.setItem('iduser',user.name);
+			// console.log(localStorage)
 			// console.log('Se manda el objeto: ', user);
 			// return this.httpClient.post<any>(`${ this.baseUrl }usuarios/create`, user)
 			return this.httpClient.post<any>(`${ this.baseUrl }auth/login`, user).
 				pipe(
-					tap(auth => this._auth = auth.access_token),
-					tap(auth => localStorage.setItem('token', auth.access_token )
-					),
+					tap(auth => {
+						if (auth?.access_token) {
+						  this._auth = auth.access_token;
+						  this._user = user.name;
+						  localStorage.setItem('iduser', user.name);
+						  localStorage.setItem('token', auth.access_token);
+				
+						  // 🔹 Emitir el estado de autenticación
+						  this.isLoggedInSubject.next(true);
+						}
+					  }),
 					catchError(error => {
 					  console.error('Login failed', error); // Log de error
 					  return of(null); // o alguna otra lógica que maneje el error

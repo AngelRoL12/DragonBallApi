@@ -33,3 +33,12 @@ export interface User {
     name: string;
     password: string;
 }
+
+export interface Params {
+    limit: string;
+    page?: string;
+    name?: string;
+    gender?: 'Male' | 'Female' | 'Other' | 'Uknown';
+    race?: string;
+    affiliation?: string;
+  }

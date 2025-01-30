@@ -1,4 +1,4 @@
-<p-toolbar *ngIf="isLoggedIn">
+<p-toolbar>
     <div class="p-toolbar-group-left">
       <span class="p-toolbar-title">Dragon Ball API</span>
     </div>
@@ -7,7 +7,7 @@
         <!-- Botón para redirigir al Dashboard -->
         <p-button *ngIf="!isOnPersonajesFavoritos" label="Favoritos" [raised]="true" severity="info" [routerLink]="'/personajesFavoritos'" class="me-3"/>
         <p-button *ngIf="isOnPersonajesFavoritos" label="Personajes" [raised]="true" severity="info" [routerLink]="'/personajes'" class="me-3"/>
-        <p-button *ngIf="isLoggedIn" label="Logout" icon="pi pi-sign-out" severity="danger" (click)="logout()" class="me-3"/>
+        <p-button label="Logout" icon="pi pi-sign-out" severity="danger" (click)="logout()" class="me-3"/>
     </div>
   </p-toolbar>
   

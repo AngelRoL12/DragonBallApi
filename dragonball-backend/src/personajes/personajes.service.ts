@@ -4,6 +4,7 @@ import { InjectRepository } from '@nestjs/typeorm';
 import { lastValueFrom } from 'rxjs';
 import { PersonajesFavoritosEntity } from './entity/personajes-favoritos.entity';
 import { Repository } from 'typeorm';
+import { Params } from './interfaces/interfaces';
 
 @Injectable()
 export class PersonajesService {
@@ -14,8 +15,10 @@ export class PersonajesService {
     ) {}
     private readonly apiUrl = 'https://dragonball-api.com/api/characters';
 
-    async getCharacters(filters: Record<string, any>) {
+    async getCharacters(filters: Params) {
       try {
+        // console.log('Haciendo solicitud a:', this.apiUrl);
+        // console.log('Parámetros enviados:', filters);
         // Llamada HTTP con manejo de parámetros dinámicos
         const response = await lastValueFrom(
           this.httpService.get(this.apiUrl, {

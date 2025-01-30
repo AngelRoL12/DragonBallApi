@@ -2,6 +2,7 @@ import { Body, Controller, Delete, Get, Param, Post, Query, UseGuards } from '@n
 import { PersonajesService } from './personajes.service';
 import { PersonajesFavoritosEntity } from './entity/personajes-favoritos.entity';
 import { JwtAuthGuard } from 'src/auth/guardas/jwt-auth.guard';
+import { Params } from './interfaces/interfaces';
 
 @Controller('personajes')
 export class PersonajesController {
@@ -9,7 +10,7 @@ export class PersonajesController {
 
     @UseGuards(JwtAuthGuard)
     @Get('/consulta')
-    getCharacters(@Query() query: Record<string, any>) {
+    getCharacters(@Query() query: Params) {
       return this.personajesService.getCharacters(query);
     }
 

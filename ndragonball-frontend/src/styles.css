@@ -1,1 +1,11 @@
 /* You can add global styles to this file, and also import other style files */
+.search-input {
+    padding-left: 2rem; /* Asegúrate de que haya suficiente espacio para el icono */
+}
+
+.p-inputIcon {
+    left: 10px; /* Ajusta el valor para mover el icono */
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%); /* Centra el icono verticalmente */
+}

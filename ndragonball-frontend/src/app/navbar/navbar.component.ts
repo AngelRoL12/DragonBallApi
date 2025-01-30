@@ -10,7 +10,7 @@ import { filter } from 'rxjs';
 })
 export class NavbarComponent {
   username: string | null = '';
-  isLoggedIn: boolean = false;
+  // isLoggedIn: boolean = false;
   isOnPersonajesFavoritos: boolean = false;
 
   constructor(private authService: AuthService, private router: Router) { }
@@ -20,7 +20,7 @@ export class NavbarComponent {
     const token = localStorage.getItem('token');
     if (token) {
       console.log("Token: ", token);
-      this.isLoggedIn = true;
+      // this.isLoggedIn = true;
       this.username = localStorage.getItem('name'); // Obtener el nombre del usuario
     }
 
@@ -39,7 +39,7 @@ export class NavbarComponent {
     // localStorage.removeItem('token');
     // localStorage.removeItem('iduser');
     this.authService.logout();
-    this.isLoggedIn = false;
+    // this.isLoggedIn = false;
     window.location.reload(); // Recargar la página para que el navbar se actualice
   }
 }

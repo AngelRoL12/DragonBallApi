@@ -10,7 +10,8 @@ export class PersonajesService {
 
   async getPersonajes(): Promise<PersonajesResponse> {
     try {
-      const data = await this.apiService.getData('/consulta'); // Llama al método del ApiService
+      const params = { limit: 30 };
+      const data = await this.apiService.getData('/consulta', params); // Llama al método del ApiService
       return data; // Retorna los datos al componente
     } catch (error) {
       console.error('Error al obtener personajes:', error);
